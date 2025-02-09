@@ -70,7 +70,7 @@ function post_list(all_post, filter, value){
                 _post_list.push(all_post[i])
         return _post_list
     }
-    else if(filter == "name"){
+    else if(filter == "post"){
         for(let i=0; i<all_post.length; i++)
             if(value == all_post[i].name){
                 _post_list.push(all_post[i])
