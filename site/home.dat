@@ -1,0 +1,4 @@
+id:home
+url:/
+title:Home
+template:/templates/home_template.sh
