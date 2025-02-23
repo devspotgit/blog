@@ -1,44 +1,54 @@
 
+{
 
-[
-    {
-        "title":"Powershell Beginner Guide",
-        "slug":"introduction-to-powershell",
-        "categories":[],
-        "preview":"",
-        "date":"",
-        "content":""
-    },
+    "posts":[
+        {
+            "title":"Powershell Beginner Guide",
+            "slug":"powershell-introduction",
+            "category":"automation",
+            "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa sapien, laoreet sit amet consectetur tincidunt, egestas non justo.",
+            "date":"December 13, 2024"
+        },
+        {
+            "title":"Rest VS Graphql",
+            "slug":"rest-graphql",
+            "category":"web-dev",
+            "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa sapien, laoreet sit amet consectetur tincidunt, egestas non justo.",
+            "date":"October 15, 2024"
+        },
+        {
+            "title":"What is Cloud Computing",
+            "slug":"cloud-computing",
+            "category":"networking",
+            "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa sapien, laoreet sit amet consectetur tincidunt, egestas non justo.",
+            "date":"October 04, 2024"
+        },
+        {
+            "title":"Dos Scripting",
+            "slug":"dos-scripting",
+            "category":"automation",
+            "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa sapien, laoreet sit amet consectetur tincidunt, egestas non justo.",
+            "date":"May 11, 2024"
+        }
+    ],
+    
+    
+    "categories":[
+        {
+            "title":"Automation",
+            "slug":"automation"
+        },
+        {
+            "title":"Networking",
+            "slug":"networking"
+        },
+        {
+            "title":"Web Dev",
+            "slug":"web-dev"
+        }
+    ]
 
-    {
-        "title":"Api Rest VS Graph Ql",
-        "slug":"api-rest-vs-graph-ql",
-        "categories":[],
-        "preview":"",
-        "date":"",
-        "content":""
-    },
+}    
 
-    {
-        "title":"",
-        "slug":"",
-        "categories":[],
-        "preview":"",
-        "date":"",
-        "content":""
-    },
-
-    {
-        "title":"",
-        "slug":"",
-        "categories":[],
-        "preview":"",
-        "date":"",
-        "content":""
-    }
-
-
-
-]
 
 
