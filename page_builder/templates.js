@@ -9,15 +9,17 @@ import { getPost, getCategory, getSearchedPosts, getCategoryPosts } from "/page_
 function header(){
 
     return `
-        <div class="header">
-            <div>
-                <button><i class="fa-solid fa-bars"></i></button>
-                <a href="/">Blog</a>
+        <div class="header-wrapper">
+            <div class="header">
+                <div>
+                    <button><i class="fa-solid fa-bars"></i></button>
+                    <a href="/">Blog</a>
+                </div>
+                <form>
+                    <input placeholder="search post..." type="text">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
             </div>
-            <form>
-                <input placeholder="search post..." type="text">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
         </div>
     `
 }
@@ -103,8 +105,10 @@ function postContent(content){
 function footer(){
 
     return `
-        <div class="footer">
-            <span>Devspot - All Rights Resersed</span>
+        <div class="footer-wrapper">
+            <div class="footer">
+                <span>Devspot - All Rights Reserved</span>
+            </div>
         </div>
     `
 }
@@ -120,8 +124,10 @@ function homePage(posts, categories){
         <div class="home-page">
             ${header()}
             ${title("All Posts")}
-            ${side(categories)}
-            ${postList(posts)}
+            <div class="main">
+                ${side(categories)}
+                ${postList(posts)}
+            </div>
             ${footer()}
         </div>
     `
@@ -136,8 +142,10 @@ function postPage(posts, categories, slug, content){
         <div class="post-page">
             ${header()}
             ${postHeader(post)}
-            ${side(categories)}
-            ${postContent(content)}
+            <div class="main">
+                ${side(categories)}
+                ${postContent(content)}
+            </div>
             ${footer()}
         </div>
     `
@@ -154,8 +162,10 @@ function categoryPage(posts, categories, slug){
         <div class="category-page">
             ${header()}
             ${title(category.title)}
-            ${side(categories)}
-            ${postList(categoryPosts)}
+            <div class="main">
+                ${side(categories)}
+                ${postList(categoryPosts)}
+            </div>
             ${footer()}
         </div>
     `
@@ -170,8 +180,10 @@ function searchPage(posts, categories, keyword){
         <div class="search-page">
             ${header()}
             ${title(keyword)}
-            ${side(categories)}
-            ${postList(searchedPosts)}
+            <div class="main">
+                ${side(categories)}
+                ${postList(searchedPosts)}
+            </div>
             ${footer()}
         </div>
     `    
