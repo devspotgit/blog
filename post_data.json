@@ -3,7 +3,7 @@
 
     "posts":[
         {
-            "title":"Powershell Beginner Guide",
+            "title":"Powershell Beginner",
             "slug":"powershell-introduction",
             "category":"automation",
             "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa sapien, laoreet sit amet consectetur tincidunt, egestas non justo.",
