@@ -1,197 +1,87 @@
 
 
-import { getPost, getCategory, getSearchedPosts, getCategoryPosts } from "/page_builder/api.js"
 
-
-
-/* template parts */
-
-function header(){
+function page(data){
 
     return `
-        <div class="header-wrapper">
-            <div class="header">
-                <div>
-                    <button><i class="fa-solid fa-bars"></i></button>
-                    <a href="/">Blog</a>
+        <input type="checkbox" id="box">
+        <div class="page"> 
+            <div class="transparent" onClick="(
+                ()=>{
+                    document.querySelector('#box').checked=false
+                }
+            )()"></div>
+            <div class="header-wrapper">
+                <div class="header">
+                    <button class="side-open" onClick="(
+                        ()=>{
+                            document.querySelector('#box').checked=true 
+                        }
+                    )()"><i class="fa-solid fa-bars"></i></button>
+                    <a class="site-name" href="/">Blog</a>
+                    <form class="search">
+                        <input class="search-input" placeholder="search posts..." type="text">
+                        <button class="search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
-                <form>
-                    <input placeholder="search post..." type="text">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
             </div>
-        </div>
-    `
-}
 
+            <div class="side">
+                <div class="side-header">
+                    <button class="side-close" onClick="(
+                        document.querySelector('#box').checked=false
 
-function side(categories){
-
-    let html = ""
-
-    categories.forEach(item => {
-        html+=`<a href="/categories/${item.slug}">${item.title}</a>`
-    })
-
-    return `
-        <div class="side">
-            <button><i class="fa-solid fa-xmark"></i></button>
-            <div class="categories">
-                ${html}
+                    )()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="categories">
+                    ${(()=>{
+                        let html =""
+                        data.categories.forEach(category => {
+                            html+='<a class="category" href="/categories/'+category.slug+'">'+category.title+'</a>'
+                        })
+                        return html
+                    })()}
+                </div>
             </div>
-        </div>
-    `
-}
 
-
-function title(name){
-
-    return `
-        <div class="title">
-            <span>${name}</span>
-        </div>
-    `
-}
-
-function postHeader(post){
-
-    return `
-        <div class="post-header">
-            <span>${post.title}</span>
-            <span>${post.date}</span>
-        </div>
-    `
-}
-
-
-function postCard(post){
-
-    return `
-        <div class="post-card">
-            <a href="/posts/${post.slug}">${post.title}</a>
-            <span>${post.date}</span>
-            <p>${post.preview}</p>
-            <a href="/posts/${post.slug}">Read More</a>
-        </div>
-    `
-}
-
-function postList(posts){
-
-    let html = ""
-
-    posts.forEach(item => {
-        html+=`${postCard(item)}`
-    })
-
-    return `
-        <div class="post-list">
-            ${html}
-        </div>
-    `
-}
-
-
-function postContent(content){
-
-    return `
-        <div class="post-content">
-            ${content}
-        </div>
-    `
-}
-
-
-function footer(){
-
-    return `
-        <div class="footer-wrapper">
-            <div class="footer">
-                <span>Devspot - All Rights Reserved</span>
-            </div>
-        </div>
-    `
-}
-
-
-
-
-/* templates */
-
-function homePage(posts, categories){
-
-    return `
-        <div class="home-page">
-            ${header()}
-            ${title("All Posts")}
             <div class="main">
-                ${side(categories)}
-                ${postList(posts)}
+                <div class="${data.type == "post" ? "post-header" : "page-title"}">
+                    ${
+                        data.type == "post" ? '<span class="post-title">'+data.post.title+'</span> <span class="post-date">'+data.post.date+'</span>'
+                        : data.type == "category" ? data.category.title 
+                        : data.type == "search" ? data.keyword
+                        : "All Posts"
+                    }
+                </div>
+
+                <div class="${ data.type == "post" ? "post-content" : "post-list"}">
+                    ${
+                        data.type == "post" ? data.content
+                        : (()=>{
+                            let html =""
+                            data.posts.forEach(post => {
+                                html+=`
+                                    <div class="post-card">
+                                        <a class="post-card-title" href="/posts/${post.slug}">${post.title}</a>
+                                        <span class="post-card-date">${post.date}</span>
+                                        <p class="post-card-preview">${post.preview}</p>
+                                        <a class="read-more" href="/posts/${post.slug}">Read More</a>
+                                    </div>
+                                `
+                            })
+                            return html
+                        })()
+                    }
+                </div>
             </div>
-            ${footer()}
+            
+            <div class="footer">Devspot</div>
+            
         </div>
     `
 }
 
-
-function postPage(posts, categories, slug, content){
-
-    const post = getPost(slug, posts)
-    
-    return `
-        <div class="post-page">
-            ${header()}
-            ${postHeader(post)}
-            <div class="main">
-                ${side(categories)}
-                ${postContent(content)}
-            </div>
-            ${footer()}
-        </div>
-    `
-}
-
-
-function categoryPage(posts, categories, slug){
-
-    const category = getCategory(slug, categories)
-
-    const categoryPosts = getCategoryPosts(slug, posts)
-
-    return `
-        <div class="category-page">
-            ${header()}
-            ${title(category.title)}
-            <div class="main">
-                ${side(categories)}
-                ${postList(categoryPosts)}
-            </div>
-            ${footer()}
-        </div>
-    `
-}
-
-
-function searchPage(posts, categories, keyword){
-
-    const searchedPosts = getSearchedPosts(keyword, posts)
-
-    return `
-        <div class="search-page">
-            ${header()}
-            ${title(keyword)}
-            <div class="main">
-                ${side(categories)}
-                ${postList(searchedPosts)}
-            </div>
-            ${footer()}
-        </div>
-    `    
-}
-
-
-
-export { postPage, categoryPage, homePage, searchPage }
+export { page }
 
 
 

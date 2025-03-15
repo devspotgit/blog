@@ -1,23 +1,27 @@
 
 
-import {homePage, categoryPage, searchPage, postPage} from "/page_builder/templates.js"
-
+import { page } from "/page_builder/templates.js"
+import { getPost, getCategory, getSearchedPosts, getCategoryPosts } from "/page_builder/api.js"
 
 
 fetch("/post_data.json")
 .then(resp => resp.json())
 .then(data => {
+    
+    if(location.pathname.split("/")[1] == "posts"){
 
-    const pageType = location.pathname.split("/")[1]
-
-    if(pageType == "posts"){
-
-        const slug = location.pathname.split("/")[2]
-
-        fetch("/post_content/"+slug+".html")
+        fetch("/post_content/"+location.pathname.split("/")[2]+".html")
         .then(res => res.text())
         .then(content => {
-            document.body.innerHTML = postPage(data.posts, data.categories, slug, content) 
+
+            const d = {}
+            d.post = getPost(location.pathname.split("/")[2], data.posts)
+            d.categories = data.categories
+            d.content = content
+            d.type = "post"
+
+            document.body.innerHTML = page(d) 
+
             document.body.dispatchEvent(
                 new CustomEvent("pageReady", {
                     bubbles: true
@@ -25,20 +29,36 @@ fetch("/post_data.json")
             )
         })
     }
-    else if(pageType == "categories"){
 
-        const slug = location.pathname.split("/")[2]
-        document.body.innerHTML = categoryPage(data.posts, data.categories, slug) 
+    else if(location.pathname.split("/")[1] == "categories"){
+
+        const d = {}
+        d.category = getCategory(location.pathname.split("/")[2], data.categories)
+        d.posts = getCategoryPosts(location.pathname.split("/")[2], data.posts)
+        d.categories = data.categories
+        d.type = "category"
+
+        document.body.innerHTML = page(d) 
+        
         document.body.dispatchEvent(
             new CustomEvent("pageReady", {
                 bubbles: true
             })
         )
     }
-    else if(pageType == "search"){
+
+    else if(location.pathname.split("/")[1] == "search"){
 
         const params = new URLSearchParams(location.search)
-        document.body.innerHTML = searchPage(data.posts, data.categories, params.get("keyword")) 
+
+        const d = {}
+        d.posts = getSearchedPosts(params.get("keyword"), data.posts)
+        d.categories = data.categories
+        d.keyword = params.get("keyword")
+        d.type = "search"
+        
+        document.body.innerHTML = page(d) 
+
         document.body.dispatchEvent(
             new CustomEvent("pageReady", {
                 bubbles: true
@@ -47,7 +67,13 @@ fetch("/post_data.json")
     }
     else{
 
-        document.body.innerHTML = homePage(data.posts, data.categories) 
+        const d = {}
+        d.posts = data.posts
+        d.categories = data.categories
+        d.type = "home"
+
+        document.body.innerHTML = page(d) 
+
         document.body.dispatchEvent(
             new CustomEvent("pageReady", {
                 bubbles: true
