@@ -71,11 +71,11 @@
     :root{
 
         /* page */
-        --page-temp-col:minmax(300px, auto);
+        --page-temp-col:minmax(350px, auto);
 
         /* side */
         --side-pos:fixed;
-        --side-left:-100%;
+        --side-left:-300px;
         --side-disp:flex;
         --side-width:250px;
         --side-height:100vh;
