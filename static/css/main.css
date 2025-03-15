@@ -71,7 +71,7 @@
     :root{
 
         /* page */
-        --page-temp-col:minmax(400px, auto);
+        --page-temp-col:minmax(300px, auto);
 
         /* side */
         --side-pos:fixed;
@@ -362,13 +362,12 @@ a{
 .transparent{
     position:fixed;
     width:100vw;
-    height:100vw;
+    height:100vh;
     top:0;
     z-index:-1;
     opacity:0.5;
     background-color:white;
 }
-
 
 
 #box{
