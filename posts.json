@@ -1,0 +1,41 @@
+[
+
+    {
+        "slug":"intersection-observer",
+        "category":"js",
+        "searchWords":["intersection",  "observer", "js", "javascript"],
+        "date":"2025-02-13",
+        "published":false,
+        "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a pulvinar nisl, sit amet sagittis sapien. Vivamus porttitor diam lectus, sit amet feugiat velit tincidunt at."
+    },
+
+    {
+        "slug":"css-grid",
+        "category":"css",
+        "searchWords":["css", "grid"],
+        "date":"2025-01-29",
+        "published":true,
+        "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a pulvinar nisl, sit amet sagittis sapien. Vivamus porttitor diam lectus, sit amet feugiat velit tincidunt at."
+    },
+
+    {
+        "slug":"rest-api",
+        "category":"api",
+        "searchWords":["rest", "api"],
+        "date":"2025-04-18",
+        "published":true,
+        "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a pulvinar nisl, sit amet sagittis sapien. Vivamus porttitor diam lectus, sit amet feugiat velit tincidunt at."
+    },
+
+    {
+        "slug":"asynchronous-function",
+        "category":"js",
+        "searchWords":["asynchronous", "function", "js"],
+        "date":"2025-08-01",
+        "published":true,
+        "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a pulvinar nisl, sit amet sagittis sapien. Vivamus porttitor diam lectus, sit amet feugiat velit tincidunt at."
+    }
+
+]
+
+
