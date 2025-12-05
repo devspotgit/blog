@@ -6,7 +6,7 @@ const posts = JSON.parse(fs.readFileSync(path.join(__dirname, "posts.json"), "ut
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-const postPerPage = 3
+const postPerPage = 1
 
 function getCategoryList(){
 
@@ -124,32 +124,29 @@ function searchPost(text){
 
     const postList = []
 
-    if(text){
+    const textArray = text.split(" ")
 
-        const textArray = text.split(" ")
+    posts.forEach(post => {
 
-        posts.forEach(post => {
+        let found = false
 
-            let found = false
+        for(let i=0; i<post.searchWords.length; i++){
+
+            if(found) break
+
+            for(let j=0; j<textArray.length; j++){
+
+                if(textArray[j] && post.searchWords[i].includes(textArray[j].toLowerCase()) && post.published) {
     
-            for(let i=0; i<post.searchWords.length; i++){
+                    postList.push(post)
 
-                if(found) break
-
-                for(let j=0; j<textArray.length; j++){
-
-                    if(post.searchWords[i].includes(textArray[j].toLowerCase()) && post.published) {
-        
-                        postList.push(post)
-
-                        found = true
-        
-                        break
-                    }
+                    found = true
+    
+                    break
                 }
             }
-        })
-    }
+        }
+    })
 
     return postList
 }

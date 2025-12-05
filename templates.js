@@ -11,7 +11,7 @@ function header(){
 
     return `
         <div class="header">
-            <a href="/">Devspot - Blog</a>
+            <a href="/">Blog</a>
         </div>
     `
 }
@@ -43,10 +43,8 @@ function search(){
 
     return `
         <div class="search">
-            <div class="search-input">
-                <input type="text" placeholder="Search...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+            <input type="text" placeholder="Search...">
+            <span><i class="fa-solid fa-magnifying-glass"></i></span>
             <div class="search-result"></div>
         </div>
     `
@@ -61,14 +59,24 @@ function postContent(post){
     return `<div class="post-content">${content}</div>`
 }
 
-function postTitle(post){
+function title(type, data){
 
     return `
-        <div>
-            <a href="/categories/${post.category}?page=1">${api.getName(post.category)}</a>
-            <span><i class="fa-solid fa-chevron-right"></i></span>
-            <span>${api.getName(post.slug)}</span>
-        </div>
+        ${
+            type == "post" ? `
+                <div class="title">
+                    <a href="/categories/${data.category}?page=1">${api.getName(data.category)}</a>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>${api.getName(data.slug)}</span>
+                </div>
+            `:`
+                <div class="title">
+                    <a href="/categories/all?page=1">Home</a>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>${api.getName(data)}</span>
+                </div>
+            `
+        }
     `
 }
 
@@ -141,9 +149,9 @@ function pagination(postList, category, page){
             }
         }
 
-        if(page + 1 <= pages) next = `<a href="/categories/${category}?page=${page + 1}"><i class="fa-solid fa-chevron-right"></i></a>`
+        if(page + 1 <= pages) next = `<a next href="/categories/${category}?page=${page + 1}"><i class="fa-solid fa-chevron-right"></i></a>`
 
-        if(page - 1 >= 1) prev =   `<a href="/categories/${category}?page=${page - 1}"><i class="fa-solid fa-chevron-left"></i></a>`
+        if(page - 1 >= 1) prev =   `<a prev href="/categories/${category}?page=${page - 1}"><i class="fa-solid fa-chevron-left"></i></a>`
 
         
 
@@ -185,8 +193,11 @@ function categoryPage(category, page){
                     ${header()}
                     ${categoryList(category)}
                     ${search()}
-                    ${postList(posts, page)}
-                    ${pagination(posts, category, page)}
+                    ${title("category", category)}
+                    <div class="page-content"> 
+                        ${postList(posts, page)}
+                        ${pagination(posts, category, page)}
+                    </div>
                     ${footer()}
                 </div>
                 <script type="module" src="/js/main.js"></script>
@@ -214,7 +225,7 @@ function postPage(slug){
                     ${header()}
                     ${categoryList(post.category)}
                     ${search()}
-                    ${postTitle(post)}
+                    ${title("post", post)}
                     ${postContent(post)}
                     ${footer()}
                 </div>

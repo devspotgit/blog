@@ -2,35 +2,57 @@
 
 import * as templates from "/js/templates.js"
 
-const searchInput = document.querySelector(".search-input input")
+const searchInput = document.querySelector(".search input")
 
 const searchResult = document.querySelector(".search-result")
 
+let timer = null
+
 searchInput.addEventListener("input", e => {
 
-    fetch("/search", {
+    if(!e.target.value.trim()) {
 
-        method:"POST",
-        
-        headers:{
+        searchResult.innerHTML = ""
 
-            "Content-Type":"application/json"
-        },
+        if(timer) clearTimeout(timer)
+    }
 
-        body:JSON.stringify({
+    else{
 
-            text:e.target.value.trim()
-        })
-    })
+        if(timer) clearTimeout(timer)
 
-    .then(res => res.json())
+        timer = setTimeout(() => {
 
-    .then(data => {
+            fetch("/search", {
 
-        searchResult.innerHTML = data.posts.map(post => templates.searchItem(post)).join(" ")
-    })
+                method:"POST",
+            
+                headers:{
 
-    searchResult.innerHTML = "loading..."
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+
+                    text:e.target.value.trim()
+                })
+            })
+
+            .then(res => res.json())
+
+            .then(data => {
+
+                searchResult.innerHTML = data.posts.map(post => templates.searchItem(post)).join(" ")
+            })
+
+        }, 2500)
+    }
+   
+})
+
+searchInput.addEventListener("focusout", ( ) => {
+
+    searchResult.innerHTML = ""
 })
 
 
