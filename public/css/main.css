@@ -146,15 +146,16 @@ a{
     width:100%;
     display:flex;
     flex-direction:column;
-    max-height:200px;
+    max-height:400px;
     overflow-y:auto;
+    border-radius:10px;
+    background-color:var(--primary-lighter-plus);
 }
 
 .search-item{
     display:flex;
     flex-direction:column;
     gap:10px;
-    background-color:var(--primary-lighter-plus);
     padding:10px;
 }
 
@@ -198,14 +199,15 @@ a{
 .page-content{
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
+    /* justify-content:space-between; */
+    gap:45px;
 }
 
 /* ----------- post list ------------ */
 .post-list{
    display:flex;
    flex-direction:column;
-   gap:20px;
+   gap:30px;
 }
 
 /* ----------- post item ------------ */
@@ -215,7 +217,7 @@ a{
     gap:10px;
 }
 
-.post-item a{
+.post-item a:first-of-type{
     color:var(--primary);
     font-weight:bold;
     font-size:1.1rem;
@@ -230,6 +232,14 @@ a{
 .post-item p{
     line-height:1.6;
     color:var(--grey-light);
+}
+
+.post-item a:last-of-type{
+    padding:10px;
+    background-color:var(--primary);
+    color:var(--white);
+    border-radius:5px;
+    align-self:start;
 }
 
 /* ----------- pagination ------------ */
@@ -263,6 +273,61 @@ a{
 .pagination a[current]{
     background-color:var(--primary);
     color:var(--white);
+}
+
+/* ----------- spinner ------------ */
+@keyframes rotation {
+    10%{
+        transform:rotate(36deg);
+    }    
+    20%{
+        transform:rotate(72deg);
+    }    
+    30%{
+        transform:rotate(108deg);
+    }    
+    40%{
+        transform:rotate(144deg);
+    }    
+    50%{
+        transform:rotate(180deg);
+    }    
+    60%{
+        transform:rotate(216deg);
+    }    
+    70%{
+        transform:rotate(252deg);
+    }    
+    80%{
+        transform:rotate(288deg);
+    }    
+    90%{
+        transform:rotate(324deg);
+    }    
+    100%{
+        transform:rotate(360deg);
+    }    
+}
+
+.spinner{
+    width:100%;
+    height:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.spinner span{
+    border-bottom:2px solid var(--primary);
+    border-right:2px solid var(--primary);
+    border-left:2px solid var(--primary);
+    width:50px;
+    height:50px;
+    border-radius:100%;
+    animation-name:rotation;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
 }
 
 /* ----------- post content ------------ */

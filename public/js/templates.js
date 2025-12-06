@@ -12,6 +12,15 @@ function searchItem(post){
     `
 }
 
-export { searchItem }
+function spinner(){
+
+    return `
+        <div class="spinner">
+            <span></span>
+        </div>
+    `
+}
+
+export { searchItem, spinner }
 
 

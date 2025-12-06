@@ -45,15 +45,22 @@ searchInput.addEventListener("input", e => {
                 searchResult.innerHTML = data.posts.map(post => templates.searchItem(post)).join(" ")
             })
 
-        }, 2500)
+            searchResult.innerHTML = templates.spinner()
+
+        }, 2000)
     }
    
 })
 
-searchInput.addEventListener("focusout", ( ) => {
 
-    searchResult.innerHTML = ""
+window.addEventListener("click", e => {
+
+    if(!(e.target == searchResult ||  e.target == searchInput || searchResult.contains(e.target))){
+
+        searchResult.innerHTML = ""
+    }
 })
+
 
 
 

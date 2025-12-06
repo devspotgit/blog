@@ -6,11 +6,13 @@ const posts = JSON.parse(fs.readFileSync(path.join(__dirname, "posts.json"), "ut
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-const postPerPage = 1
+const postPerPage = 10
 
 function getCategoryList(){
 
     const categoryList = []
+
+    categoryList.push("all")
 
     posts.forEach(post => {
 
@@ -19,8 +21,6 @@ function getCategoryList(){
             if(!categoryList.find( category => category == post.category)) categoryList.push(post.category)
         }
     })
-
-    categoryList.push("all")
 
     return categoryList
 }
@@ -54,7 +54,7 @@ function getDate(date){
 
     const dateArray = date.split("-")
 
-    return month[+dateArray[1]] + " " + dateArray[2] + ", " + dateArray[0] 
+    return month[+dateArray[1]-1] + " " + dateArray[2] + ", " + dateArray[0] 
 }
 
 function getCategoryPost(category){
@@ -147,6 +147,8 @@ function searchPost(text){
             }
         }
     })
+
+    sortPost(postList)
 
     return postList
 }

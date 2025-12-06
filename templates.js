@@ -87,6 +87,7 @@ function postItem(post){
             <a href="/posts/${post.slug}">${api.getName(post.slug)}</a>
             <span>${api.getDate(post.date)}</span>
             <p>${post.preview}</p>
+            <a href="/posts/${post.slug}">Read More</a>
         </div>
     `
 }
