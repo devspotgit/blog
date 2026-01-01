@@ -1,12 +1,12 @@
 [
 
     {
-        "slug":"intersection-observer",
+        "slug":"introduction-to-vuejs",
         "category":"js",
-        "searchWords":["intersection",  "observer", "js", "javascript"],
+        "searchWords":["vue", "js", "javascript"],
         "date":"2025-02-13",
         "published":true,
-        "preview":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a pulvinar nisl, sit amet sagittis sapien. Vivamus porttitor diam lectus, sit amet feugiat velit tincidunt at."
+        "preview":"Vue Js is a popular javascript framework for building modern web application.  Vue Js focuses mostly on building the front end, unlike traditional javascript..."
     },
 
     {

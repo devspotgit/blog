@@ -1,0 +1,148 @@
+
+
+<p>
+    <b>Vue Js </b>is a popular javascript framework for building modern web application. 
+    Vue Js focuses mostly on building the front end, unlike traditional javascript, 
+    the framework relies on state variables that trigger the DOM to render each time they change.
+    This simplifies develloping considerably by allowing devellopers to focus more on the logic and leaving 
+    Vue handle the DOM.
+</p>
+
+<p>
+    In this tutorial we will only explore the basics of vue, mastering those fundementals will give you the
+    requirements to start with Vue Js. Vue Js being a javascript framework, having some basics understanding of <b>javascript, html and css </b>
+    may be required to follow along.
+</p>
+
+<h1>
+    Single-File Component (SFC)
+</h1>
+
+<p>
+    A single file component is the building block of any vue project, the file can be broken down in 3 parts :
+</p>
+
+<ul>
+    <li>
+        <b>Script Tag</b> that handles the logic, the way the component will behave.
+    </li>
+    
+    <li>
+        <b>Template Tag</b> describes the html structure of the component, and can include dynamic data defines in the script tag.
+    </li>
+    
+    <li>
+        <b>Style Tag</b> handles the styling of the component.
+    </li>
+</ul>
+
+<p>
+    Vue Js supports two Api Styles, <b>Composition Api</b> and <b>Options Api</b>, both may differ
+    in terms of code structuring, but the end result is still the same. For the sake of having a friendly and familiar javascript code,
+    all the examples in this tutorial will only use Options Api.
+</p>
+
+<h1>
+    Component Logic
+</h1>
+
+<p>
+    The whole component logic is exported as an object from the script tag. Vue supports a variety of predefined methods and objects we need to implement
+    in order to expose the component logic to the template. The most important are :   
+</p>
+
+<ul>
+    <li>
+        <b>data : </b> is a method that returns all the state variables in one single object, all the variable defined inside
+        that object are exposed as properties of the exported object and can be accessed from that object reference by using the keyword <b>this</b>.  
+    </li>
+    <li>
+        <b>methods : </b>is an object inside which, you implement all the function your logic is relying on.
+    </li>
+</ul>
+
+<p>
+    Below is a simple example on how a single file component is structured.
+</p>
+
+<script src="https://gist.github.com/devspotgit/78213d498b12702ade3f72e0c573f1bd.js"></script>
+
+<h1>Text interpolation</h1>
+
+<p>
+    Text interpolation is a way to bind html content to a data. The component holding the data will render each time
+    the data is changed. Vue uses double mustache syntax inside the template to hold the data.
+</p>
+
+<script src="https://gist.github.com/devspotgit/d721cd982fc116eead801f6a4fb64c14.js"></script>
+
+<p>In the example above, data method returns a variable named "text" which is used to populate the template.</p>
+
+<p>Vue extends html attributes by providing directives to better integrate data to your template. In this tutorial we will explore some of them.</p>
+
+<h1>v-bind</h1>
+
+<p>
+    <b>v-bind</b> directive is used to bind an html attribute to your data. The attribute becoming dynamic, responds
+    to any change in the data it's bound to.
+</p>
+
+<script src="https://gist.github.com/devspotgit/96f86066ef20fc48ee6eee1dba150f57.js"></script>
+
+<p>
+    In this example, the class attribute is bound to  "colorClass".
+</p>
+
+<p>
+    A more simpler syntax consist on removing the "v-bind" keyword and keeping only the colon.
+</p>
+
+<script src="https://gist.github.com/devspotgit/21bdf5e5790d3e7697810208a71e82e0.js"></script>
+
+<h1>v-model</h1>
+
+<p>
+    <b>v-model</b> allows for two way binding on an input tag, this means data can be updated not only from within your code logic,
+    but also each time the input value is changed by the user.
+</p>
+
+<script src="https://gist.github.com/devspotgit/9a86c6ac4455e56ca0d9d7ae6dec5077.js"></script>
+
+<h1>v-on</h1>
+
+<p>
+    <b>This directive</b> is meant to handle events. In this case the directive binds the event callback to a function defined inside the "methods" object.
+</p>
+
+<script src="https://gist.github.com/devspotgit/02dea6f6d2a8d1cb70bfc54c5d98ef47.js"></script>
+
+<p>
+    This directive also allows for a shorter syntax by replacing v-on by <b>"@"</b> and removing the colon.
+</p>
+
+<script src="https://gist.github.com/devspotgit/76e9cadd030e14abc7a6458b86c70e91.js"></script>
+
+
+<h1>v-if, v-else-if, v-else</h1>
+
+<p>
+    <b>v-if, v-else-if, v-else</b> are conditional statement, they behave the same way we use them in any programing language,
+    they allow us to render the html based on whether or not the condition is true.
+</p>
+
+<script src="https://gist.github.com/devspotgit/0edcb6b413066f9d2b6ece25dbe890b3.js"></script>
+
+<h1>v-for</h1>
+
+<p>
+    <b>v-for</b> as you can guess is no different than our usual loop statement, each iteration in the loop create a html block with custom data, 
+    representing each item from our list. 
+</p>
+
+<script src="https://gist.github.com/devspotgit/c68a3e4b5fa9c67a6d6cc05a14c99593.js"></script>
+
+<p>
+    This wraps up our short introduction of the vue js. This tutorial was primary meant to get familiar with vue and the way vue application is structured. 
+    Further understanding of this framework is still required to build a complete project.
+</p>
+

@@ -1,4 +1,6 @@
 
+@import url("./gist_dark_theme.css");
+
 :root{
     --primary:hsl(0, 59%, 20%);
     --primary-light:hsl(0, 59%, 40%);
@@ -334,6 +336,33 @@ a{
 .post-content p{
     color:var(--grey-light);
     line-height:1.6;
+    margin-bottom:15px;
+    text-align:justify;
+}
+
+.post-content h1{
+    color:var(--primary);
+    font-size:1.5rem;
+    margin-bottom:15px;
+}
+
+.post-content ul{
+    color:var(--grey-light);
+    margin-left:20px;
+}
+
+.post-content ul li{
+    margin-bottom:15px;
+    line-height:1.6;
+    text-align:justify;
+}
+
+.post-content ul li::marker{
+    color:var(--primary);
+}
+
+.post-content .cp_embed_wrapper{
+    margin-bottom:15px;
 }
 
 
