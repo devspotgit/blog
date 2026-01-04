@@ -1,0 +1,170 @@
+
+<p>
+    Firebase is very powerfull backend as a service that handles most of the application server side
+    requirements behind the scenes. Firebase can handle web app as well as mobile app, in this tutorial we will focus
+    only on web app.
+</p>
+
+<p>
+    The goal of this tutorial is to give you basic idea on how to handle user authentication and how to implement some basic 
+    authentication strategies with firebase. In this tutorial, we will assume you have already setup a firebase web app. In case you haven't, feel free 
+    to refer to our Github repo <b><a target="_blank" href="https://github.com/devspotgit/firebaseauth.git">Firebase Auth</a></b>, it's a complete firebase auth project based on <b>Vite</b> that implements some of the firebase 
+    features we will talk about in this tutorial. Before we start, let's understand what authentication is really about and by extention authorization. 
+</p>
+
+<h1>Authentication flow</h1>
+
+<p>
+    Authentication is the process by which an app determines the identity of a user, authorization in other hand determines 
+    what ressources the user has access to based on his identity. So in order to allow correct access, an app will require a user to sign in 
+    by providing his identity. That being said having a user sign in each time when the identity is required is not practical, so instead we persist 
+    the user authentication after the first sign in by storing a piece of information about that user in the browser (user session), so for all 
+    subsequent requests, the app rely on that instead of continuing asking for login. Of course the session can't stay alive forever, it usually has 
+    some time limit for security reasons and there are some mechanisms put in place to renew the session behind the scenes. Firebase relies on 
+    the same mechanisms for any authentication flow and allow us to always get correct authentication state 
+    through its api.   
+</p>
+
+<p>
+    Firebase provides an event listener that triggers each time user authentication state changes, this is very useful when 
+    building an app that needs to be aware of the user authentication state at any time.
+</p>
+
+<h1>onAuthStateChanged</h1>
+
+<p>
+    <b>onAuthStateChanged</b> is an event that listens to any change in user authentication state, <b>sign in, sign out,...</b>, 
+    below is a simple example on how to implement it.
+</p>
+
+<script src="https://gist.github.com/devspotgit/50723d2575e5ebe3d03b96e8c4c9abf1.js"></script>
+
+<p>
+    <b>onAuthStateChanged</b> takes in two parameters, <b>the auth object</b>, and <b>a custom callback</b>, 
+    the event return the current user object if any as parameter to your callback. Given the value of <b>user object</b>,
+    you can update your app accordingly.  
+</p>
+
+<p>
+    As alternative, Firebase also offers a way to directly access the current user authentication state without having to set up any callback, 
+    unlike <b>onAuthStateChanged</b>, this is straightforward.
+</p>
+
+<script src="https://gist.github.com/devspotgit/238f23092db3b4c6214a4b103a1f5a2a.js"></script>
+
+<p>
+    Despite its simpler syntax compare to <b>onAuthStateChanged</b>, <b>currentUser</b> is not always recommended, 
+    first because <b>currentUser</b> is asynchrounous, so if you are planing to use the <b>user object</b> 
+    right after <b>currentUser</b> line, the object might still be empty, it gets populated only after <b>onAuthStateChanged</b> 
+    has been triggered. Secondly, not knowing when the user authentication state will change can be difficult 
+    to handle with <b>currentUser</b>. The best practice is to use the event listener <b>onAuthStateChanged</b> 
+    to get the correct user authentication state.  
+</p>
+
+<p>
+    Now, let's explore some of the authentiction strategies provided by Firebase. We will cover two types in this tutorial, 
+    <b>email and password auth</b>, and third party based authentication with <b>Google</b>, and <b>Github</b>
+</p>
+
+<h1>Email and Password Authentication</h1>
+
+<p>
+    <b>Email and Password authentication</b> is the most basic of Firebase authentication, as you can guess, 
+    it requires users to provide their email and password. Unlike some others authentication methods, 
+    it requires the users to sign up first.
+</p>
+
+<script src="https://gist.github.com/devspotgit/c0cc3edeaa0e0d80879e592c434d356b.js"></script>
+
+<p>
+    <b>createUserWithEmailAndPassword</b> is the method used to signup any user. the method has three parameters, 
+    <b>the auth object from Firebase/auth</b>, <b>the email and password provided by the user</b>. Any error from user end, 
+    like <b>missing information, password strength, redundant user, or email format</b> is handled by Firebase and can be caught through 
+    a <b>try and catch wrapper</b>.
+</p>
+
+<p>
+    <b>Important note</b>, Firebase always sign in users right after they have been successfully registered. So 
+    if your code is redirecting the user or update the UI when a user is signed in, it will trigger right after the sign up.  
+</p>
+
+<p>
+    Even thought, users are automatically signed in after signing up, they still need to sign in manually after 
+    being signed out. This is done through <b>signInWithEmailAndPassword</b> method, below is a quick example.
+</p>
+
+<script src="https://gist.github.com/devspotgit/96e0970dc989b8c78e193fbebc1d8123.js"></script>
+
+<p>
+    Any user error handled by firebase like <b>missing information, mismatch information, not existing user</b> 
+    can be caught through <b>try and catch statement</b>. Both <b>createUserWithEmailAndPassword and signInWithEmailAndPassword</b> 
+    return an object containing user information.
+</p>
+
+<h1>Google and Github authentication</h1>
+
+<p>
+    <b>Google and Github authentication</b> are similar in a way that they both rely on third party service provider 
+    to grant access to the user personal information to your app instead of having the user directly provide those information 
+    like we did before. This type of authentication is widely used these days in web app.
+</p>
+
+<p>
+    Firebase provides <b>signInWithPopup and signInWithRedirect</b> methods to handle this type of authentication. In 
+    this tutorial we will focus on <b>signInWithPopup</b>. Both are quite similar, it should be easy to pick up
+    one after learning the other.
+</p>
+
+<script src="https://gist.github.com/devspotgit/57a9639799482cf153f93d7f08f71869.js"></script>
+
+<p>
+    <b>signInWithPopup</b> will take <b>auth object</b> and <b>the specific provider</b> for the third party service used. 
+</p>
+
+<p>
+    For both Google and Github, Firebase provide the following class to initialize the provider :
+</p>
+
+<ul>
+    <li>
+        <b>GoogleAuthProvider</b> to initialize Google provider
+    </li>
+    <li>
+        <b>GithubAuthProvider</b> to initialize Github provider
+    </li>
+</ul>
+
+<p>
+    <b>GoogleAuth</b> is straightforward with Firebase, it does not require to setup 
+    an Oauth app from Google console, since Firebase belongs to google this is automatically 
+    setup on your behalf. When it comes to a different provider, the Oauth app needs to be setup
+    from the third party service before it can be used with Firebase. This is the case with Github, 
+    when enabling Github authentication on Firebase, it will ask for a <b>client secret and client id</b> 
+    that can only be available after setting up an Oauth app from Github.
+</p>
+
+<p>
+    To setup Github Oauth app do as followed :
+</p>
+
+<ul>
+    <li>From your Github account, go to <b>settiings</b></li>
+    <li>Choose <b>Developer Settings</b></li>
+    <li>You will see <b>Oauth app</b>, add a new app</li>
+    <li>Fill out the required information, <b>the homepage and the callback URL</b> can be found on your Firebase app</li>
+    <li>After you register your app, you will be able to <b>generate a new client id and secret</b>, 
+        use them to setup your Firebase app
+    </li>
+</ul>
+
+<p>
+    This concludes this brief tutorial on Firebase Authentication, for more information, refer directly 
+    to <b><a target="_blank" href="https://firebase.google.com/docs/auth/web/start?_gl=1*ru17ly*_up*MQ..*_ga*NTUxMzUxMzQxLjE3Njc1NDE5NDY.*_ga_CW55HF8NVT*czE3Njc1NDE5NDUkbzEkZzAkdDE3Njc1NDE5NDYkajU5JGwwJGgw">Firebase authentication page</a>.</b>
+</p>
+
+
+
+
+
+
+
