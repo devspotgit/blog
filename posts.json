@@ -16,6 +16,15 @@
         "date":"2025-03-25",
         "published":true,
         "preview":" Firebase is very powerfull backend as a service that handles most of the application server side requirements behind the scenes. Firebase can handle web app as well as mobile app..."
+    },
+
+    {
+        "slug":"pure-css-accordion",
+        "category":"css",
+        "searchWords":["css", "accordion"],
+        "date":"2025-03-01",
+        "published":true,
+        "preview":"Web components are building blocks of any UI, we often find ourselves trying to build one from scratch, when none of the UI libraries out there can suit our project..."
     }
 ]
 

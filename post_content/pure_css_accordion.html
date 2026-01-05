@@ -1,0 +1,97 @@
+
+<p>
+    Web components are building blocks of any UI, we often find ourselves trying to build one from scratch, 
+    when none of the UI libraries out there can suit our project. However, building one from scratch can be 
+    a hassle since most components require javascript to make them interactive. In this tutorial, we will build 
+    an <b>accordion web component</b> that relies only on html and css, no <b>javascript</b>. But first let's understand 
+    what an accordion component is. 
+</p>
+
+<p>
+    <b>Accordion</b> often will show as a list of items, each having a header that allows the user to make 
+    them expand or collapse. each item is responsive to the rest, by automatically collapsing as soon as one 
+    expands. There are some variations where all the items can stay expand, but in this guide we will stick
+    with the former. Now let's discuss our strategy on building this component.
+</p>
+
+<p>
+    The core of this web component is a an html buil-in component you all know very well, <b>Input with type radio</b>.
+    Yes this simple html tag is all we will need to make our accordion web component interactive. Most of you have already used that 
+    element, so you are well familiar with its behaviour, but for those who haven't, let's try to explain and 
+    understand how this component can be related to an accordion. 
+</p>
+
+<p>
+    The main function of that element is to allow user to make an exclusive selection, this means if the user is offered 
+    multiple option, it can only select one, no more. The <b>input type radio</b> will automatically deactivate any option 
+    we haven't selected and keep only the selected one active. You are starting to get how this will be useful for our 
+    component, indeed our component will behave the same way and keep only the item the user selects expand, and the rest 
+    of them will collapse.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="myEVYaV" data-pen-title="input-radio" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/myEVYaV">accordion-1</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+
+<p>
+    All four tags are sharing the same attribute <b>name</b>. This is how html binds the elements together and make them react 
+    to each other. We are going to use the input tag as a trigger (accordion header) to expand our item. In order to accomplish 
+    that we need to connect each item header to its corresponding input, to do so we will use the <b>label tag</b>. 
+</p>
+
+<p>
+    <b>Label tag</b> is another useful html build-in element we often see in user form. The element basically can be connected 
+    to any input tag and will trigger the input response each time it's clicked on, to make the connection, we need to add 
+    the <b>for attribute</b> to the label and the corresponding <b>id attribute</b> to the input. 
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="EayPBNq" data-pen-title="input-radio-label" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/EayPBNq">accordion-2</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    If you click on the text, it will trigger the input element, the same way it did before. So now we don't need the input tag anymore,
+    let's hide them and add some css.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="MYeKMoL" data-pen-title="accordion-3" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/MYeKMoL">accordion-3</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    We are getting close to the final result, we also need all item to collapse by default, let's make sure of that.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="ogLbrJB" data-pen-title="accordion-4" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/ogLbrJB">accordion-4</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    In order to make the component reactive, we can rely on css pseudo class selector <b>:checked</b> that allows us to style based on the input state. 
+    If you take a look to the html, you will notice the input tag being just on the top of the item body, this will allow us to hide the item body based 
+    on the state of the input element that comes just before it. Let's get that done.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="XJKXLvm" data-pen-title="accordion-5" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/XJKXLvm"> accordion-5</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    And there you go, the final result, a perfectly functional accordion that relies only on css with transition when the item expands and collapses. 
+</p>
+
+<p>
+    Even though a component is easy to build this way, it's lacking web accessibility that usually allow the component to be manipulated from the keyboad. 
+    Despite that minor defect, this is still a great way to showcase your skills by building simple project.
+</p>
+
+<p>
+    This wraps up this tutorial, hope this has been useful to you, see you in the next one.
+</p>
+
