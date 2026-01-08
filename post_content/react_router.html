@@ -1,0 +1,123 @@
+
+<p>
+    React is a powerful front end library that is widely adopted and most of the time used
+    to handle page interactivity. React comes with a number of features to build your app, 
+    in today tutrial we will focus on <b>React Router</b>. 
+</p>
+
+<p>
+    You can follow along with this pre setup react router app from my github repo 
+    <a href="https://github.com/devspotgit/reactrouter.git" target="_blank"><b>react router</b></a>.
+</p>
+
+<p>
+    <b>React Router</b> is a separate library that works in conjunction with React to provide 
+    a way for your app to navigate from page to page. Let's clarify one thing, react is still 
+    a front end library, the router only simulates a navigation, for a fact, the browser will 
+    never load each time the app is redirected to a different page.  
+</p>
+
+<h1>BrowserRouter</h1>
+
+<p>
+    The first step on activating routing in your react app consist on wrapping your app inside
+    <b>BrowserRouter</b> component.
+</p>
+
+<script src="https://gist.github.com/devspotgit/1f3eadbd7e4b6c7d497c0cd42bee6e71.js"></script>
+
+<p>
+    Next let's create some page components. 
+</p>
+
+
+<script src="https://gist.github.com/devspotgit/605938d37b381bbf44b69b2c747a9646.js"></script>
+
+<p> 
+    Our app will have three main pages, <b>home, about and contact</b>. For the sake of explaining, 
+    we put all three components in the same file, but in a real project, it sometimes prefer to have 
+    a separate file for each component. 
+</p>
+
+<p>
+    Now we need to update the main component (App), by adding the navigation as a header. To do so 
+    we can use the <b>Link</b> or <b>NavLink</b> component from react router. 
+</p>
+
+<h1>Link, NavLink</h1>
+
+<p>
+    <b>The Link component</b> as the name suggest allows us to create a link which redirect the app to a 
+    specific page when we click on it. <b>NavLink</b> behave the same as <b>Link</b>, with one addiotional 
+    feature, it allows us to style the link based on its state, this can be achieved by implementing a call back 
+    function to return the appropriate styling for <b>className or style attribute </b> 
+</p>
+
+<script src="https://gist.github.com/devspotgit/3e97242037712e014f3b64347c3a0681.js"></script>
+
+<p>
+    The <b>to</b> attribute represents the page, the app will be redirected to.
+</p>
+
+<p>
+    The next step now is to connect each page to each link, so far our links don't do 
+    anything when we click on it, to change that we will rely on <b>Route and Routes</b> 
+    components.
+</p>
+
+<h1>Route and Routes</h1>
+
+<p>
+    <b>Routes</b> is the route wrapper for all of our routes, and <b>Route</b> component 
+    handles the connection between the link and the component, this is achieved by configuring the 
+    <b>path and element</b> attributes with the correct setting. 
+</p>
+
+<p>
+    <b>path</b> refers to the link, so the value of <b>path</b> should be the same as the 
+    attribute <b>to</b> from <b>Link component</b>, and <b>element</b> represents the component 
+    the link is connected to. Let's implement that.
+</p>
+
+<script src="https://gist.github.com/devspotgit/7d5ed1922d8928d235b33c86bd06466d.js"></script>
+
+<p>
+    React allows only the selected page to be rendered.
+</p>
+
+<h1>Nested route</h1>
+
+<p>
+    Now let's talk about nested route, in some scenarios, we would want a page to have inner pages  
+    user can navigate through, this is where nested route comes in, it allows us to define 
+    inner route inside an existing one.
+</p>
+
+<p>
+    For our example, let's modify the App component by adding some inner route inside the route <b>About</b>. 
+</p>
+
+<script src="https://gist.github.com/devspotgit/a878a61282eb49eb85a2d544f568575a.js"></script>
+
+<p>
+    <b>Team and Clients</b> were added as sub page to About, Note that the corresponding component for those two routes 
+    must be imported inside the App component.
+</p>
+
+<p>
+    The same way we did last time, the navigation has to be added to the about page to interact 
+    with the inner pages, and finally we need to define the placeholder to where the component will be 
+    rendered inside the about page, and this is done through the <b>Outlet</b> Component. Now let's 
+    update the about component with those changes.
+</p>
+
+<script src="https://gist.github.com/devspotgit/af7aa63b20cf233fd6706ad6de9b6e4c.js"></script>
+
+<p>
+    This concludes this tutorial, there are still many features of react router left to explore, this tutorial 
+    give the necessary knowlegde to begin. Hope you enjoyed learning along, see you in the next one.
+</p>
+
+
+
+
