@@ -30,7 +30,7 @@
     {
         "slug":"react-router",
         "category":"react",
-        "searchWords":["react", "javasccript"],
+        "searchWords":["react", "javasccript", "router"],
         "date":"2025-05-21",
         "published":true,
         "preview":"React is a powerful front end library that is widely adopted and most of the time used to handle page interactivity. React comes with a number of features..."

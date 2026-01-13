@@ -158,5 +158,28 @@ function getFilename(slug){
     return slug.split("-").join("_")
 }
 
-module.exports = { getPost, getName, getFilename, getDate, getCategoryList, searchPost, sortPost, getCategoryPost, postPerPage }
+function getLastPosts(count){
+
+    const p = [ ...posts]
+
+    sortPost(p)
+
+    const lastPosts = []
+
+    let c = 0
+
+    p.forEach(item => {
+
+        if(c < count && item.published) {
+
+            lastPosts.push(item)
+
+            c ++
+        }
+    })
+
+    return lastPosts
+}
+
+module.exports = { getLastPosts, getPost, getName, getFilename, getDate, getCategoryList, searchPost, sortPost, getCategoryPost, postPerPage }
 
