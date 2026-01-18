@@ -27,8 +27,8 @@ a{
 .root{
     min-height:100vh;
     display:grid;
-    min-width:400px;
-    grid-template-columns:minmax(20px, auto) minmax(360px, 800px) minmax(20px, auto);
+    min-width:300px;
+    grid-template-columns:minmax(20px, auto) minmax(260px, 800px) minmax(20px, auto);
     grid-template-rows:80px max-content max-content max-content auto 50px;
     row-gap:30px;
 }
