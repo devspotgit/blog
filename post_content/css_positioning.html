@@ -1,0 +1,89 @@
+
+
+<p>
+    When styling a web page, we are often required to position an element outside the 
+    document normal flow, this is where css positioning comes in, css provides an attribute 
+    called <b>position</b>, each of its value makes the element behave in different way.
+    In this tutorial we will explore all the css position and how they affect an element. 
+</p>
+
+<h1>Static Position</h1>
+
+<p>
+    <b>Static</b> is the default position, the element stay within the document flow and doesn't 
+    exibit any unusual behaviour. the attributes <b>top, bottom, right and left</b> have no effect 
+    on static position.
+</p>
+
+<h1>Relative Position</h1>
+
+<p>
+   Relative position alows an element to be positioned relative to its original position.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="vEKpjaJ" data-pen-title="relative position" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/vEKpjaJ"> relative position</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    In the example above the box is moving <b>200px</b> to left and <b>100px</b> down relative
+    to its initial position.
+</p>
+
+<h1>Absolute Position</h1>
+
+<p>
+    An element position set to absolute is relative to its closest parent which position is anything but 
+    <b>static</b>. 
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="wBWpxyg" data-pen-title="absolute position" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/wBWpxyg">absolute position</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>)on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    In the example above, the green box is relatively positioned to its closest parent (yellow box) which has 
+    position set to relative.
+</p>
+
+<h1>Fixed Position</h1>
+
+<p>
+    The <b>fixed position</b> is relative to the viewport, since the viewport is fixed, the element will stick 
+    at a given position and be completely removed from the document normal flow.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="XJKVBoo" data-pen-title="fixed position" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/XJKVBoo">fixed position</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>)on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    On the above example, when you scroll, you will notice, the box staying fixed and not moving along.
+</p>
+
+<h1>Sticky Position</h1>
+
+<p>
+    <b>Sticky position</b> allows an element to scroll with the rest of the page until a treshold is reached, 
+    then the element become fix and behave like a fixed positioned element.
+</p>
+
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="OPXzwKm" data-pen-title="sticky position" data-user="devspot" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/devspot/pen/OPXzwKm">sticky position</a> by devspot (<a href="https://codepen.io/devspot">@devspot</a>)on <a href="https://codepen.io">CodePen</a>.</span>
+    </p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+<p>
+    As you can see, the box scroll with the page until it reaches the top and become fix. This is often used to make 
+    nav bar stick to top and always accessible without the need to scroll.
+</p>
+
+<p>
+    This wraps up the short introduction to css positioning, there are still more to learn about this feature, feel
+    free to try yourself to get more familiar with css, and most important, have fun &#128512;
+</p>
+
+

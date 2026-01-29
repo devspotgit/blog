@@ -10,6 +10,15 @@
     },
 
     {
+        "slug":"css-positioning",
+        "category":"css",
+        "searchWords":["css", "position"],
+        "date":"2026-01-04",
+        "published":true,
+        "preview":"When styling a web page, we are often required to position an element outside the  document normal flow, this is where css positioning comes in..."
+    },
+
+    {
         "slug":"firebase-auth",
         "category":"firebase",
         "searchWords":["firebase", "javascript"],
